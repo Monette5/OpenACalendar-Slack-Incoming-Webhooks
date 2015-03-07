@@ -75,6 +75,9 @@ foreach($dataToInclude as $event) {
 
 // Post to Slack!
 $post = array('text'=>$message);
+if (isset($config['slack_channel']) && $config['slack_channel']) {
+	$post['channel'] = $config['slack_channel'];
+}
 
 
 $ch = curl_init();
