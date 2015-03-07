@@ -23,6 +23,10 @@ if (substr($url, -1) != '/') {
 }
 $url .= 'api1';
 
+if (isset($config['area_slug']) && $config['area_slug']) {
+	$url .= '/area/'.$config['area_slug'];
+} 
+
 $url .= "/events.json";
 
 // Get the Data
