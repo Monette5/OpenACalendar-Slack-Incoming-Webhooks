@@ -78,7 +78,12 @@ $post = array('text'=>$message);
 if (isset($config['slack_channel']) && $config['slack_channel']) {
 	$post['channel'] = $config['slack_channel'];
 }
-
+if (isset($config['slack_username']) && $config['slack_username']) {
+	$post['username'] = $config['slack_username'];
+}
+if (isset($config['slack_icon_url']) && $config['slack_icon_url']) {
+	$post['icon_url'] = $config['slack_icon_url'];
+}
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $config['slack_incoming_webhook_url']);
