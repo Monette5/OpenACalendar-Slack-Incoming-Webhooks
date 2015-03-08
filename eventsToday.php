@@ -80,7 +80,7 @@ if (!$dataToInclude) {
 }
 
 // Build message
-$message = "Events on today:\n";
+$message = "On today:\n";
 foreach($dataToInclude as $event) {
 	$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
 }
