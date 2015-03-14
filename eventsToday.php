@@ -55,17 +55,19 @@ $todayEnds = $today->getTimestamp();
 $dataToInclude = array();
 foreach($data->data as $event) {
 	$include = false;
-	// starts today?
-	if ($event->start->timestamp >= $todayStarts && $event->start->timestamp <= $todayEnds) {
-		$include = true;
-	}
-	// ends today
-	if ($event->end->timestamp >= $todayStarts && $event->end->timestamp <= $todayEnds) {
-		$include = true;
-	}
-	// starts before today and ends after today - a ongoing event
-	if ($event->start->timestamp <= $todayStarts && $event->end->timestamp >= $todayEnds) {
-		$include = true;
+	if (!$event->deleted) {
+		// starts today?
+		if ($event->start->timestamp >= $todayStarts && $event->start->timestamp <= $todayEnds) {
+			$include = true;
+		}
+		// ends today
+		if ($event->end->timestamp >= $todayStarts && $event->end->timestamp <= $todayEnds) {
+			$include = true;
+		}
+		// starts before today and ends after today - a ongoing event
+		if ($event->start->timestamp <= $todayStarts && $event->end->timestamp >= $todayEnds) {
+			$include = true;
+		}
 	}
 
 	if ($include) {
