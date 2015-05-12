@@ -84,7 +84,11 @@ if (!$dataToInclude) {
 // Build message
 $message = "On today:\n";
 foreach($dataToInclude as $event) {
-	$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
+	if ($event->cancelled) {
+		$message .= "<".$event->siteurl."|".$event->summaryDisplay." [CANCELLED]>\n";
+	} else {
+		$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
+	}
 }
 
 // Post to Slack!

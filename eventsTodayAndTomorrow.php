@@ -109,13 +109,21 @@ $message = '';
 if ($dataToIncludeToday) {
 	$message = "On today:\n";
 	foreach($dataToIncludeToday as $event) {
-		$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
+		if ($event->cancelled) {
+			$message .= "<".$event->siteurl."|".$event->summaryDisplay." [CANCELLED]>\n";
+		} else {
+			$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
+		}
 	}
 }
 if ($dataToIncludeTomorrow) {
 	$message = "On tomorrow:\n";
 	foreach($dataToIncludeTomorrow as $event) {
-		$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
+		if ($event->cancelled) {
+			$message .= "<".$event->siteurl."|".$event->summaryDisplay." [CANCELLED]>\n";
+		} else {
+			$message .= "<".$event->siteurl."|".$event->summaryDisplay.">\n";
+		}
 	}
 }
 
