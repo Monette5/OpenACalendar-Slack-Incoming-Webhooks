@@ -117,7 +117,7 @@ if ($dataToIncludeToday) {
 	}
 }
 if ($dataToIncludeTomorrow) {
-	$message = "On tomorrow:\n";
+	$message .= "On tomorrow:\n";
 	foreach($dataToIncludeTomorrow as $event) {
 		if ($event->cancelled) {
 			$message .= "<".$event->siteurl."|".$event->summaryDisplay." [CANCELLED]>\n";
