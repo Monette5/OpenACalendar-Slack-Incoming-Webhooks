@@ -25,6 +25,8 @@ $url .= 'api1';
 
 if (isset($config['area_slug']) && $config['area_slug']) {
 	$url .= '/area/'.$config['area_slug'];
+} else if (isset($config['curated_list_slug']) && $config['curated_list_slug']) {
+	$url .= '/curatedlist/'.$config['curated_list_slug'];
 } 
 
 $url .= "/events.json";
