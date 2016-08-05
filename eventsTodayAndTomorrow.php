@@ -16,6 +16,16 @@ foreach(array('site_url','slack_incoming_webhook_url') as $var) {
 	}
 }
 
+$ignoreEvents = array();
+if (isset($config['ignore_events'])) {
+	foreach(explode("," , $config['ignore_events']) as $ie) {
+		$ie = intval(trim($ie));
+		if ($ie) {
+			$ignoreEvents[] = $ie;
+		}
+	}
+}
+
 // Get JSON URL
 $url = $config['site_url'];
 if (substr($url, -1) != '/') {
@@ -60,7 +70,7 @@ $tomorrowStarts = $datetime->getTimestamp();
 $dataToIncludeToday = array();
 $dataToIncludeTomorrow = array();
 foreach($data->data as $event) {
-	if (!$event->deleted) {
+	if (!$event->deleted && !in_array($event->slug, $ignoreEvents)) {
 		// TODAY?
 		$include = false;
 		// starts today?
